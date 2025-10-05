@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-mongoose.connect("mongodb://127.0.0.1:27017");
+
 
 
 const userSchema=mongoose.Schema({
@@ -10,10 +10,16 @@ const userSchema=mongoose.Schema({
     },
     email:String,
     password:String,
-    cart:{
-        type:Array,
-        default:[]
+    cart: [{
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "product"
     },
+    quantity: {
+        type: Number,
+        default: 1
+    }
+}],
     isadmin:Boolean,
     orders:{
         type:Array,

@@ -21,4 +21,4 @@ const ownerSchema=mongoose.Schema({
 
 }); 
 
-module.exports=mongoose.model("user",ownerSchema);
+module.exports=mongoose.model("owner",ownerSchema);

@@ -1,12 +1,15 @@
- const mongoose=require('mongoose');
+const mongoose = require('mongoose');
+const config = require("config");
 
- mongoose.connect("mongodb://127.0.0.1.27017/scatch")
- .then(function(){
-    console.log("connected")
- })
+// Only connect if not already connected
+if (mongoose.connection.readyState === 0) {
+    mongoose.connect(config.get("MONGODB_URI"))
+        .then(function() {
+            console.log("MongoDB connected successfully");
+        })
+        .catch(function(err) {
+            console.log("MongoDB connection error:", err);
+        });
+}
 
- .catch(function(err){
-    console.log(err);
- })
-
- module.exports=mongoose.connection;
+module.exports = mongoose.connection;
