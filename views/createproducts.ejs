@@ -3,119 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Product</title>
+    <title>Skatch - Create New Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-brown: #8B4513;
+            --secondary-brown: #A0522D;
+            --light-brown: #5D4037;
+            --background-light: #f8f6f2;
+            --border-light: #e8dfd4;
+            --card-bg: #faf7f3;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            background: linear-gradient(135deg, #f8f6f2 0%, #f0ede6 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             padding: 20px;
         }
-        
+
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(139, 69, 19, 0.08);
             overflow: hidden;
+            border: 1px solid var(--border-light);
         }
-        
+
+        /* Header */
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-brown) 0%, var(--secondary-brown) 100%);
             color: white;
-            padding: 30px;
+            padding: 40px 30px;
             text-align: center;
+            position: relative;
         }
-        
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4a574, transparent);
+        }
+
         h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             margin-bottom: 10px;
-            font-weight: 300;
+            font-weight: 600;
         }
-        
+
         .subtitle {
             font-size: 1.1rem;
             opacity: 0.9;
+            font-weight: 400;
         }
-        
+
+        /* Form Section */
         .form-section {
-            padding: 30px;
+            padding: 40px;
         }
-        
+
         .section-title {
-            font-size: 1.4rem;
-            color: #4a5568;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--light-brown);
             margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e2e8f0;
-            font-weight: 500;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-light);
+            font-weight: 600;
         }
-        
+
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
-        
+
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 600;
-            color: #2d3748;
-            font-size: 0.95rem;
+            color: var(--light-brown);
+            font-size: 1rem;
         }
-        
+
         input[type="text"],
         input[type="number"],
         input[type="file"] {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
+            padding: 15px;
+            border: 2px solid var(--border-light);
+            border-radius: 10px;
             font-size: 16px;
             transition: all 0.3s ease;
-            background: white;
+            background: #fcfaf7;
+            color: var(--light-brown);
         }
-        
+
         input[type="text"]:focus,
         input[type="number"]:focus {
-            border-color: #667eea;
+            border-color: var(--primary-brown);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+            background: white;
         }
-        
+
+        /* File Upload */
         .file-upload-wrapper {
             position: relative;
         }
-        
+
         .file-upload-label {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 15px;
+            padding: 15px;
             border: 2px dashed #cbd5e0;
-            border-radius: 8px;
+            border-radius: 10px;
             background: #f7fafc;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .file-upload-label:hover {
-            border-color: #667eea;
+            border-color: var(--primary-brown);
             background: #edf2f7;
         }
-        
+
         .file-name {
             color: #718096;
             font-size: 14px;
         }
-        
+
         .file-input {
             position: absolute;
             left: 0;
@@ -125,207 +157,460 @@
             height: 100%;
             cursor: pointer;
         }
-        
+
+        /* Color Section */
         .color-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 25px;
             margin-top: 10px;
         }
-        
+
         .color-group {
             background: #f7fafc;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
         }
-        
+
         .color-group label {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
         }
-        
+
         .color-picker {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
-        
+
         .color-option {
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
-        
+
+        .color-option:hover {
+            transform: translateY(-2px);
+        }
+
         .color-box {
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            margin-bottom: 5px;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            margin-bottom: 8px;
             border: 3px solid transparent;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        
-        .color-box:hover {
-            transform: scale(1.1);
-        }
-        
+
         .color-box.selected {
-            border-color: #2d3748;
+            border-color: var(--light-brown);
             transform: scale(1.1);
         }
-        
+
         .color-label {
-            font-size: 11px;
-            color: #718096;
+            font-size: 12px;
+            color: var(--light-brown);
             font-weight: 500;
-        }
-        
-        .submit-section {
             text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e2e8f0;
         }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-        
+
+        /* Preview Section */
         .preview-section {
-            margin-top: 30px;
-            padding: 25px;
+            margin-top: 40px;
+            padding: 30px;
             background: #f7fafc;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
         }
-        
+
         .preview-title {
-            font-size: 1.2rem;
-            color: #4a5568;
-            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--light-brown);
+            margin-bottom: 20px;
             font-weight: 600;
         }
-        
+
         .preview-content {
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 20px;
+            gap: 25px;
             align-items: start;
         }
-        
+
         .preview-image {
             background: white;
-            border-radius: 8px;
-            height: 150px;
+            border-radius: 10px;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px dashed #cbd5e0;
             overflow: hidden;
+            position: relative;
         }
-        
+
         .preview-image img {
             max-width: 100%;
             max-height: 100%;
             display: none;
+            object-fit: cover;
         }
-        
+
         .preview-details {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
         }
-        
+
         .preview-product-name {
-            font-size: 1.3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
             font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 10px;
-        }
-        
-        .preview-price {
-            font-size: 1.5rem;
-            color: #e53e3e;
-            font-weight: 700;
+            color: var(--light-brown);
             margin-bottom: 15px;
         }
-        
+
+        .preview-price {
+            font-size: 1.6rem;
+            color: var(--primary-brown);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
         .preview-panels {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 20px;
+            margin-top: 20px;
         }
-        
+
         .preview-panel {
-            padding: 15px;
-            border-radius: 6px;
+            padding: 20px;
+            border-radius: 8px;
             text-align: center;
             color: white;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
+
+        /* Submit Section */
+        .submit-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-light);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-brown) 0%, var(--secondary-brown) 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(139, 69, 19, 0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(139, 69, 19, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Messages */
         .message {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
             text-align: center;
             font-weight: 500;
+            font-size: 1rem;
         }
-        
+
         .message.success {
-            background: #c6f6d5;
-            color: #22543d;
-            border: 1px solid #9ae6b4;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
         }
-        
+
         .message.error {
-            background: #fed7d7;
-            color: #742a2a;
-            border: 1px solid #feb2b2;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
-        
-        @media (max-width: 768px) {
-            .color-section {
-                grid-template-columns: 1fr;
+
+        /* Loading States */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Focus styles for accessibility */
+        .btn:focus,
+        input:focus,
+        .color-box:focus {
+            outline: 2px solid var(--primary-brown);
+            outline-offset: 2px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .form-section {
+                padding: 30px;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
             }
             
             .preview-content {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .preview-image {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                border-radius: 12px;
+            }
+            
+            .form-section {
+                padding: 25px;
+            }
+            
+            header {
+                padding: 25px 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .color-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .color-group {
+                padding: 20px;
+            }
+            
+            .color-picker {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            
+            .color-box {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .preview-section {
+                padding: 25px;
+                margin-top: 30px;
+            }
+            
+            .preview-title {
+                font-size: 1.2rem;
             }
             
             .preview-panels {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
+            
+            .preview-panel {
+                padding: 15px;
+                min-height: 70px;
+                font-size: 0.9rem;
+            }
+            
+            .submit-btn {
+                padding: 16px 40px;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+            
+            .form-section {
+                padding: 20px;
+            }
+            
+            header {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 25px;
+            }
+            
+            input[type="text"],
+            input[type="number"],
+            input[type="file"] {
+                padding: 12px;
+            }
+            
+            .file-upload-label {
+                padding: 12px;
+            }
+            
+            .color-picker {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .color-box {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .color-label {
+                font-size: 11px;
+            }
+            
+            .preview-section {
+                padding: 20px;
+                margin-top: 25px;
+            }
+            
+            .preview-image {
+                height: 150px;
+            }
+            
+            .preview-details {
+                padding: 20px;
+            }
+            
+            .preview-product-name {
+                font-size: 1.2rem;
+            }
+            
+            .preview-price {
+                font-size: 1.4rem;
+            }
+            
+            .message {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.1rem;
+            }
+            
+            .color-picker {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .color-box {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .preview-image {
+                height: 120px;
+            }
+            
+            .preview-details {
+                padding: 15px;
+            }
+            
+            .preview-product-name {
+                font-size: 1.1rem;
+            }
+            
+            .preview-price {
+                font-size: 1.3rem;
+            }
+            
+            .preview-panel {
+                padding: 12px;
+                min-height: 60px;
+                font-size: 0.8rem;
+            }
+            
+            .submit-btn {
+                padding: 14px 30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animation for preview updates */
+        @keyframes previewUpdate {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .preview-updated {
+            animation: previewUpdate 0.3s ease;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Scratch</h1>
+            <h1>Skatch</h1>
             <div class="subtitle">Create New Product</div>
         </header>
         
@@ -337,7 +622,6 @@
                 </div>
             <% } %>
             
-            <!-- FIXED FORM TAG - removed the extra closing tag -->
             <form action="/products/create" method="post" enctype="multipart/form-data" id="productForm">
                 <h2 class="section-title">Product Details</h2>
                 
@@ -362,69 +646,69 @@
                     <input type="number" name="price" id="discountPrice" placeholder="0.00" step="0.01" min="0" required>
                 </div>
                 
-                <h2 class="section-title">Panel Details</h2>
+                <h2 class="section-title">Color Customization</h2>
                 
                 <div class="color-section">
                     <div class="color-group">
                         <label>Background Color</label>
                         <div class="color-picker">
                             <div class="color-option">
-                                <div class="color-box selected" style="background-color: #3498db;" data-color="#3498db"></div>
-                                <span class="color-label">Blue</span>
+                                <div class="color-box selected" style="background-color: #8B4513;" data-color="#8B4513"></div>
+                                <span class="color-label">Saddle Brown</span>
                             </div>
                             <div class="color-option">
-                                <div class="color-box" style="background-color: #2ecc71;" data-color="#2ecc71"></div>
-                                <span class="color-label">Green</span>
+                                <div class="color-box" style="background-color: #A0522D;" data-color="#A0522D"></div>
+                                <span class="color-label">Sienna</span>
                             </div>
                             <div class="color-option">
-                                <div class="color-box" style="background-color: #e74c3c;" data-color="#e74c3c"></div>
-                                <span class="color-label">Red</span>
+                                <div class="color-box" style="background-color: #D2691E;" data-color="#D2691E"></div>
+                                <span class="color-label">Chocolate</span>
                             </div>
                             <div class="color-option">
-                                <div class="color-box" style="background-color: #f39c12;" data-color="#f39c12"></div>
-                                <span class="color-label">Orange</span>
+                                <div class="color-box" style="background-color: #CD853F;" data-color="#CD853F"></div>
+                                <span class="color-label">Peru</span>
                             </div>
                             <div class="color-option">
-                                <div class="color-box" style="background-color: #9b59b6;" data-color="#9b59b6"></div>
-                                <span class="color-label">Purple</span>
+                                <div class="color-box" style="background-color: #BC8F8F;" data-color="#BC8F8F"></div>
+                                <span class="color-label">Rosy Brown</span>
                             </div>
                             <div class="color-option">
-                                <div class="color-box" style="background-color: #34495e;" data-color="#34495e"></div>
-                                <span class="color-label">Dark</span>
+                                <div class="color-box" style="background-color: #F4A460;" data-color="#F4A460"></div>
+                                <span class="color-label">Sandy Brown</span>
                             </div>
                         </div>
-                        <input type="hidden" name="bgcolor" id="backgroundColor" value="#3498db">
+                        <input type="hidden" name="bgcolor" id="backgroundColor" value="#8B4513">
                     </div>
                     
                     <div class="color-group">
-                        <label>Tool Color</label>
+                        <label>Panel Color</label>
                         <div class="color-picker">
                             <div class="color-option">
-                                <div class="color-box selected" style="background-color: #2c3e50;" data-color="#2c3e50"></div>
-                                <span class="color-label">Navy</span>
+                                <div class="color-box selected" style="background-color: #2F4F4F;" data-color="#2F4F4F"></div>
+                                <span class="color-label">Dark Slate</span>
                             </div>
                             <div class="color-option">
-                                <div class="color-box" style="background-color: #7f8c8d;" data-color="#7f8c8d"></div>
-                                <span class="color-label">Gray</span>
+                                <div class="color-box" style="background-color: #556B2F;" data-color="#556B2F"></div>
+                                <span class="color-label">Dark Olive</span>
                             </div>
                             <div class="color-option">
-                                <div class="color-box" style="background-color: #ecf0f1;" data-color="#ecf0f1"></div>
-                                <span class="color-label">Light</span>
+                                <div class="color-box" style="background-color: #8B4513;" data-color="#8B4513"></div>
+                                <span class="color-label">Saddle Brown</span>
                             </div>
                             <div class="color-option">
-                                <div class="color-box" style="background-color: #e74c3c;" data-color="#e74c3c"></div>
-                                <span class="color-label">Red</span>
+                                <div class="color-box" style="background-color: #2F4F4F;" data-color="#2F4F4F"></div>
+                                <span class="color-label">Dark Slate</span>
                             </div>
                             <div class="color-option">
-                                <div class="color-box" style="background-color: #f39c12;" data-color="#f39c12"></div>
-                                <span class="color-label">Orange</span>
+                                <div class="color-box" style="background-color: #800000;" data-color="#800000"></div>
+                                <span class="color-label">Maroon</span>
                             </div>
                             <div class="color-option">
-                                <div class="color-box" style="background-color: #27ae60;" data-color="#27ae60"></div>
-                                <span class="color-label">Green</span>
+                                <div class="color-box" style="background-color: #8B0000;" data-color="#8B0000"></div>
+                                <span class="color-label">Dark Red</span>
                             </div>
                         </div>
-                        <input type="hidden" name="panalcolor" id="toolColor" value="#2c3e50">
+                        <input type="hidden" name="panalcolor" id="toolColor" value="#2F4F4F">
                     </div>
                 </div>
                 
@@ -440,11 +724,11 @@
                             <div class="preview-product-name" id="previewProductName">Product Name</div>
                             <div class="preview-price" id="previewPrice">$0.00</div>
                             <div class="preview-panels">
-                                <div class="preview-panel" id="previewBackgroundPanel" style="background-color: #3498db;">
+                                <div class="preview-panel" id="previewBackgroundPanel" style="background-color: #8B4513;">
                                     Background
                                 </div>
-                                <div class="preview-panel" id="previewToolPanel" style="background-color: #2c3e50;">
-                                    Tool Panel
+                                <div class="preview-panel" id="previewToolPanel" style="background-color: #2F4F4F;">
+                                    Panel
                                 </div>
                             </div>
                         </div>
@@ -454,7 +738,7 @@
                 <div class="submit-section">
                     <button type="submit" class="submit-btn">Create New Product</button>
                 </div>
-            </form> <!-- This is the correct closing form tag -->
+            </form>
         </div>
     </div>
 
@@ -469,11 +753,19 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('imagePreview').src = e.target.result;
-                    document.getElementById('imagePreview').style.display = 'block';
+                    const previewImg = document.getElementById('imagePreview');
+                    previewImg.src = e.target.result;
+                    previewImg.style.display = 'block';
                     document.getElementById('noImageText').style.display = 'none';
+                    
+                    // Add animation
+                    previewImg.classList.add('preview-updated');
+                    setTimeout(() => previewImg.classList.remove('preview-updated'), 300);
                 }
                 reader.readAsDataURL(file);
+            } else {
+                document.getElementById('imagePreview').style.display = 'none';
+                document.getElementById('noImageText').style.display = 'block';
             }
         });
 
@@ -495,48 +787,114 @@
                 const hiddenInput = parentGroup.querySelector('input[type="hidden"]');
                 hiddenInput.value = colorValue;
                 
-                // Update preview
+                // Update preview with animation
                 if (hiddenInput.id === 'backgroundColor') {
-                    document.getElementById('previewBackgroundPanel').style.backgroundColor = colorValue;
+                    const panel = document.getElementById('previewBackgroundPanel');
+                    panel.style.backgroundColor = colorValue;
+                    panel.classList.add('preview-updated');
+                    setTimeout(() => panel.classList.remove('preview-updated'), 300);
                 } else if (hiddenInput.id === 'toolColor') {
-                    document.getElementById('previewToolPanel').style.backgroundColor = colorValue;
+                    const panel = document.getElementById('previewToolPanel');
+                    panel.style.backgroundColor = colorValue;
+                    panel.classList.add('preview-updated');
+                    setTimeout(() => panel.classList.remove('preview-updated'), 300);
                 }
             });
         });
         
         // Real-time preview updates
         document.getElementById('productName').addEventListener('input', function() {
-            document.getElementById('previewProductName').textContent = this.value || 'Product Name';
+            const preview = document.getElementById('previewProductName');
+            preview.textContent = this.value || 'Product Name';
+            preview.classList.add('preview-updated');
+            setTimeout(() => preview.classList.remove('preview-updated'), 300);
         });
         
         document.getElementById('discountPrice').addEventListener('input', function() {
             const price = this.value ? parseFloat(this.value).toFixed(2) : '0.00';
-            document.getElementById('previewPrice').textContent = '$' + price;
+            const preview = document.getElementById('previewPrice');
+            preview.textContent = '$' + price;
+            preview.classList.add('preview-updated');
+            setTimeout(() => preview.classList.remove('preview-updated'), 300);
         });
         
-        // Form validation
+        // Form validation and submission
         document.getElementById('productForm').addEventListener('submit', function(e) {
             const productName = document.getElementById('productName').value.trim();
             const discountPrice = document.getElementById('discountPrice').value;
             const productImage = document.getElementById('image').files[0];
+            const submitBtn = this.querySelector('.submit-btn');
             
             if (!productName) {
                 e.preventDefault();
-                alert('Please enter a product name');
+                showMessage('Please enter a product name', 'error');
                 return;
             }
             
             if (!discountPrice || parseFloat(discountPrice) <= 0) {
                 e.preventDefault();
-                alert('Please enter a valid discount price');
+                showMessage('Please enter a valid price', 'error');
                 return;
             }
             
             if (!productImage) {
                 e.preventDefault();
-                alert('Please select a product image');
+                showMessage('Please select a product image', 'error');
                 return;
             }
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Creating Product...';
+        });
+
+        function showMessage(text, type) {
+            // Create message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = text;
+            
+            // Insert after the form
+            const formSection = document.querySelector('.form-section');
+            const existingMessage = formSection.querySelector('.message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            formSection.insertBefore(messageDiv, formSection.firstChild);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 5000);
+        }
+
+        // Add keyboard navigation for color picker
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.setAttribute('tabindex', '0');
+            option.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.querySelector('.color-box').click();
+                }
+            });
+        });
+
+        // Handle window resize for better mobile experience
+        window.addEventListener('resize', function() {
+            // Adjust preview layout if needed
+            const previewContent = document.querySelector('.preview-content');
+            if (window.innerWidth < 768) {
+                previewContent.style.gridTemplateColumns = '1fr';
+            } else {
+                previewContent.style.gridTemplateColumns = '1fr 2fr';
+            }
+        });
+
+        // Initialize preview on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial preview values
+            document.getElementById('previewProductName').textContent = 'Product Name';
+            document.getElementById('previewPrice').textContent = '$0.00';
         });
     </script>
 </body>
